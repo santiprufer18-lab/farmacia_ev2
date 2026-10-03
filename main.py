@@ -71,7 +71,7 @@ def mostrar_resumen_catalogo(catalogo: list, valor_dolar: float):
     print("-" * 100)
 
 
-def menu_pos_venta(inventario_service: InventarioService, venta_service: VentaService, vendedores: list, clientes: list, recetas_autorizadas: list):
+def menu_pos_venta(inventario_service: InventarioService, venta_service: VentaService, vendedores: list, quimicos: list, clientes: list, recetas_autorizadas: list):
     imprimir_encabezado("TERMINAL POS - REGISTRO DE VENTA Y FACTURACIÓN")
 
     # Obtenemos dólar en tiempo real
@@ -85,6 +85,8 @@ def menu_pos_venta(inventario_service: InventarioService, venta_service: VentaSe
         print(f"  {idx}. {v.nombre} (Caja {v.caja_asignada})")
     try:
         opt_v = int(input(" Opción: ")) - 1
+        if opt_v < 0:
+            raise IndexError()
         vendedor_sel = vendedores[opt_v]
     except (ValueError, IndexError):
         print(" ❌ Selección de vendedor inválida.")
@@ -97,6 +99,8 @@ def menu_pos_venta(inventario_service: InventarioService, venta_service: VentaSe
     print(f"  {len(clientes) + 1}. [ + ] Registrar nuevo cliente")
     try:
         opt_c = int(input(" Opción: ")) - 1
+        if opt_c < 0:
+            raise IndexError()
         if opt_c == len(clientes):
             rut_c = input("   RUT Cliente: ").strip()
             nom_c = input("   Nombre completo: ").strip()
