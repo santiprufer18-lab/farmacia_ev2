@@ -1,10 +1,3 @@
-"""
-Módulo de Servicios de Integración Externa.
-Conexiones en tiempo real con fuentes de datos oficiales:
-1. Cotización oficial del Dólar USD en Chile (mindicador.cl)
-2. Red Nacional de Farmacias de Turno en Chile (Ministerio de Salud - MINSAL)
-"""
-
 import json
 import urllib.request
 import urllib.error
@@ -12,17 +5,12 @@ from services.auditoria_service import AuditoriaService
 
 
 class APIService:
-    """
-    Servicio encargado de la sincronización con fuentes externas de datos sanitarios y económicos.
-    """
+
     VALOR_DOLAR_FALLBACK = 950.0
 
     @classmethod
     def obtener_dolar_tiempo_real(cls) -> float:
-        """
-        Obtiene la cotización oficial del dólar hoy en Chile desde mindicador.cl.
-        Si no hay conexión, utiliza la tasa de respaldo oficial de forma segura.
-        """
+
         url = "https://mindicador.cl/api/dolar"
         try:
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -32,13 +20,13 @@ class APIService:
                     valor_dolar = float(data['serie'][0]['valor'])
                     AuditoriaService.registrar_evento(
                         tipo="DOLAR_SYNC_OK",
-                        detalle=f"Cotización oficial USD sincronizada exitosamente: ${valor_dolar:,.2f} CLP"
+                        detalle=f"Cotizacion oficial USD sincronizada exitosamente: ${valor_dolar:,.2f} CLP"
                     )
                     return valor_dolar
         except Exception as e:
             AuditoriaService.registrar_evento(
                 tipo="DOLAR_SYNC_OFFLINE",
-                detalle=f"Conexión remota no disponible ({e}). Utilizando tasa fija de contingencia ${cls.VALOR_DOLAR_FALLBACK} CLP"
+                detalle=f"Conexion remota no disponible ({e}). Utilizando tasa fija de contingencia ${cls.VALOR_DOLAR_FALLBACK} CLP"
             )
         return cls.VALOR_DOLAR_FALLBACK
 
@@ -91,7 +79,6 @@ class APIService:
                 detalle=f"Servicio MINSAL no disponible en este momento ({e})"
             )
 
-        # Retorna lista de muestra si no hay conexión
         return [
             {"nombre": "Farmacia Cruz del Sur - Central", "comuna": "Puente Alto", "direccion": "Av. Concha y Toro 1340", "telefono": "+56 2 2999 8888", "horario": "24 Horas"},
             {"nombre": "Farmacia Ahumada - Plaza", "comuna": "Puente Alto", "direccion": "Balmaceda 420", "telefono": "+56 2 2888 7777", "horario": "08:30 a 22:00"}

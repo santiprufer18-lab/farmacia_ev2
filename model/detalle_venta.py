@@ -3,12 +3,9 @@ from model.receta import Receta
 
 
 class DetalleVenta:
-    """
-    Representa una línea de detalle dentro de una venta (Composición de Venta, Asociación con Medicamento y Receta).
-    """
     def __init__(self, medicamento: Medicamento, cantidad: int, receta: Receta = None, valor_dolar: float = 950.0):
         self._medicamento = medicamento
-        self.cantidad = cantidad      # Usa el setter con validación
+        self.cantidad = cantidad
         self._receta = receta
         self._subtotal = 0.0
         self.calcular_subtotal(valor_dolar)

@@ -4,9 +4,6 @@ from services.auditoria_service import AuditoriaService
 
 
 class VentaService:
-    """
-    Servicio de gestión del proceso de venta (POS) y emisión de comprobantes fiscales de farmacia.
-    """
     def __init__(self):
         self._ventas_realizadas = []
 
@@ -54,6 +51,6 @@ class VentaService:
         lineas.append(f" TOTAL A PAGAR          : ${venta.total:>39,.0f} CLP")
         lineas.append("=" * 64)
         lineas.append("          ¡Gracias por su compra en Farmacia Cruz del Sur!")
-        lineas.append("     Timbre Electrónico SII - Res. N° 80 del 2026 - Verifique en sii.cl")
+        lineas.append("     Timbre Electronico SII - Res. N° 80 del 2026 - Verifique en sii.cl")
         lineas.append("=" * 64)
         return "\n".join(lineas)

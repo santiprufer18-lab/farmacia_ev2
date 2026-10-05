@@ -4,9 +4,6 @@ from model.med_receta_controlado import MedRecetaControlado
 
 
 class InventarioService:
-    """
-    Servicio de gestión de inventario y stock de medicamentos de la farmacia.
-    """
     def __init__(self):
         self._catalogo = []
         self._cargar_catalogo_inicial()

@@ -1,14 +1,8 @@
-"""
-Módulo de Auditoría y Registro de Eventos de Seguridad de la Farmacia.
-"""
 
 from datetime import datetime
 
 
 class AuditoriaService:
-    """
-    Servicio de registro de auditoría para auditorías de seguridad y control de excepciones.
-    """
     _log_eventos = []
 
     @classmethod

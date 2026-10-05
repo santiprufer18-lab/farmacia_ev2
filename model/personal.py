@@ -1,9 +1,6 @@
 class Personal:
-    """
-    Clase base que representa a los trabajadores de la farmacia.
-    """
     def __init__(self, rut: str, nombre: str):
-        self.rut = rut        # Usa el setter encapsulado
+        self.rut = rut
         self._nombre = nombre
 
     @property

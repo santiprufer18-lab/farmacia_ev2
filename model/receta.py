@@ -1,7 +1,4 @@
 class Receta:
-    """
-    Representa una receta médica presentada para la compra de medicamentos.
-    """
     def __init__(self, numero_folio: str, medico: str, retenida: bool = False):
         self._numero_folio = numero_folio
         self._medico = medico
@@ -33,7 +30,6 @@ class Receta:
         self._autorizada_por_quimico = bool(valor)
 
     def es_valida(self) -> bool:
-        """Indica si la receta tiene folio y médico asignados válidos."""
         return bool(self._numero_folio and self._medico)
 
     def retener_receta(self):

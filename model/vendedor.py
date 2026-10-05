@@ -2,9 +2,6 @@ from model.personal import Personal
 
 
 class Vendedor(Personal):
-    """
-    Representa a un trabajador vendedor asignado a una caja.
-    """
     def __init__(self, rut: str, nombre: str, caja_asignada: int):
         super().__init__(rut, nombre)
         self.caja_asignada = caja_asignada

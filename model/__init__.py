@@ -1,3 +1,1 @@
-"""
-Paquete model para el sistema de gestión de Farmacia.
-"""
+"""Paquete model para el sistema de gestion de Farmacia"""
